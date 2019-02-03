@@ -11,10 +11,8 @@ class Search extends Component {
 
   search = () => {
     BooksApi.search(this.state.query).then(resp => {
-      if (resp.error) {
-        this.setState({
-          books: []
-        })
+      if (resp.error || !this.state.query) {
+        this.resetResults()
       } else {
         this.setState({
           books: resp
@@ -29,10 +27,10 @@ class Search extends Component {
     })
   }
 
-  handleChange = (event) => {
+  handleChange = (input) => {
     this.setState({
-      query: event.target.value
-    }, () => this.state.query !== '' ? this.search() : this.resetResults())
+      query: input
+    }, () => this.state.query ? this.search() : this.resetResults())
   }
 
 
@@ -43,7 +41,7 @@ class Search extends Component {
         <div className="search-books-bar">
           <Link to='/' className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={query} onChange={this.handleChange}/>
+            <input type="text" placeholder="Search by title or author" value={query} onChange={(event) => this.handleChange(event.target.value)}/>
           </div>
         </div>
         <div className="search-books-results">

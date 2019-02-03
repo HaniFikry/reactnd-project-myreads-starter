@@ -16,7 +16,7 @@ class Shelves extends Component {
   renderShelf(shelf) {
     const { favoriteBook } = this.props
     return(
-      <Shelf key={shelf.key} shelf={shelf} books={this.filterBooks(shelf.key)} updateBook={this.updateBook} favoriteBook={favoriteBook} />
+      <Shelf key={shelf.key} shelf={shelf} books={this.filterBooks(shelf.key)} updateBook={this.props.updateBook} favoriteBook={favoriteBook} />
     )
   }
 
