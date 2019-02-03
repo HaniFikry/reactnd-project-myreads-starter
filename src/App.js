@@ -59,7 +59,7 @@ class BooksApp extends React.Component {
           <Shelves books={books} updateBook={this.updateBook} fetchBooks={this.fetchBooks} shelves={shelves} favoriteBook={this.favoriteBook}/>
         }/>
         <Route path='/search' render={() => 
-          <Search updateBook={this.updateBook} favoriteBook={this.favoriteBook}/>
+          <Search updateBook={this.updateBook} favoriteBook={this.favoriteBook} shelfBooks={books}/>
         }/> 
       </div>
     )

@@ -13,6 +13,12 @@ class Book extends PureComponent {
     favoriteBook(book)
   }
 
+  detectShelf(book) {
+    const { shelfBooks } = this.props;
+    let detectedBook = shelfBooks.find((shelfBook) => shelfBook.id === book.id)
+    return detectedBook ? detectedBook.shelf : 'none'
+  }
+
   render() {
     const { book } = this.props;
     return(
@@ -21,7 +27,7 @@ class Book extends PureComponent {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks&& book.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              <select onChange={this.updateBook} value={book.shelf}>
+              <select onChange={this.updateBook} value={book.shelf ? book.shelf : this.detectShelf(book)}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>

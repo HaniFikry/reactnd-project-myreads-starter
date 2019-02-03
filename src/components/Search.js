@@ -33,9 +33,9 @@ class Search extends Component {
     }, () => this.state.query ? this.search() : this.resetResults())
   }
 
-
   render() {
     const { query, books } = this.state
+    const { shelfBooks } = this.props
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -45,7 +45,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <Shelf shelf={{text: 'Search Results'}} books={books} updateBook={this.props.updateBook} favoriteBook={this.props.favoriteBook}/>
+          <Shelf shelf={{text: 'Search Results'}} books={books} shelfBooks={shelfBooks} updateBook={this.props.updateBook} favoriteBook={this.props.favoriteBook}/>
         </div>
       </div>
     )
