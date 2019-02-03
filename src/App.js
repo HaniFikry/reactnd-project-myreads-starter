@@ -17,11 +17,10 @@ class BooksApp extends React.Component {
     ]
   }
 
-  fetchBooks = () => {
-    BooksApi.getAll().then(resp => {
-      this.setState({
-        books: resp
-      })
+  fetchBooks = async() => {
+    let books = await BooksApi.getAll()
+    this.setState({
+      books: books
     })
   }
 
